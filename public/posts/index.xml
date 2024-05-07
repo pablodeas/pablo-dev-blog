@@ -1,0 +1,166 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on </title>
+        <link>localhost/posts/</link>
+        <description>Recent content in Posts on </description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Tue, 07 May 2024 16:55:49 -0300</lastBuildDate>
+        <atom:link href="localhost/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>How to Backup and Upload With Zsh</title>
+            <link>localhost/posts/how-to-backup-with-zsh/</link>
+            <pubDate>Tue, 07 May 2024 16:55:49 -0300</pubDate>
+            
+            <guid>localhost/posts/how-to-backup-with-zsh/</guid>
+            <description>In today&amp;rsquo;s digital age, data backup and synchronization have become crucial aspects of maintaining our digital lives. Whether it&amp;rsquo;s personal projects, work documents, or family photos, ensuring that our data is safe and easily accessible is paramount. In this blog post, I&amp;rsquo;ll introduce you to a set of custom scripts designed to automate the backup and upload process of a specified directory. These scripts, written in Zsh and Bash, leverage powerful tools like rsync, tar, and rclone to streamline your backup and upload tasks.</description>
+            <content type="html"><![CDATA[<p>In today&rsquo;s digital age, data backup and synchronization have become crucial aspects of maintaining our digital lives. Whether it&rsquo;s personal projects, work documents, or family photos, ensuring that our data is safe and easily accessible is paramount. In this blog post, I&rsquo;ll introduce you to a set of custom scripts designed to automate the backup and upload process of a specified directory. These scripts, written in Zsh and Bash, leverage powerful tools like <code>rsync</code>, <code>tar</code>, and <code>rclone</code> to streamline your backup and upload tasks.</p>
+<h2 id="a-closer-look-at-the-scripts">A Closer Look at the Scripts</h2>
+<h3 id="the-backup-script-do_backupzsh">The Backup Script: <code>do_backup.zsh</code></h3>
+<p>Our journey begins with the <code>do_backup.zsh</code> script, a reliable companion for creating backups of your specified directories. It employs <code>rsync</code> to mirror files from the source directory to a designated backup location, followed by a compression into a neat <code>.tar.gz</code> file. This script is not just about copying files; it&rsquo;s about safeguarding your data with minimal effort.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env zsh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Script Name:  backup.zsh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Author:       Pablo Andrade</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Created:      28/11/2023</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Version:      1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># To decompress</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#tar -xzvf $bkp_file</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Debugging ON/OFF</span>
+</span></span><span style="display:flex;"><span>set -x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#script_path=&#34;$(dirname &#34;${BASH_SOURCE[0]}&#34;)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Variables</span>
+</span></span><span style="display:flex;"><span>project_directory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/home/pablodeas/Workspace/Projects/pessoal/do_backup&#34;</span>
+</span></span><span style="display:flex;"><span>source <span style="color:#e6db74">&#34;</span>$project_directory<span style="color:#e6db74">/config.sh&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Remove Last Backup File</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> remove_last <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	echo <span style="color:#e6db74">&#34; --- &#34;</span>
+</span></span><span style="display:flex;"><span>	echo <span style="color:#e6db74">&#34;-&gt; Removing last Backup File!...&#34;</span>
+</span></span><span style="display:flex;"><span>	echo <span style="color:#e6db74">&#34; --- &#34;</span>
+</span></span><span style="display:flex;"><span>	/usr/bin/rm -f $bkp_last
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		echo $msg_sucess
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>		echo $msg_error
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> exec_bkp <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	echo <span style="color:#e6db74">&#34; --- &#34;</span>
+</span></span><span style="display:flex;"><span>	echo <span style="color:#e6db74">&#34;-&gt; Starting Backup...&#34;</span>
+</span></span><span style="display:flex;"><span>	echo <span style="color:#e6db74">&#34; --- &#34;</span>
+</span></span><span style="display:flex;"><span>	rsync -av --progress --partial --append-verify $main_dir $bkp_dir &amp;&gt; $project_log/rsync_$data.log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		echo $msg_sucess
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>		echo $msg_error
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compress</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> exec_compact <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34; --- &#34;</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;-&gt; Starting Compression...&#34;</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34; --- &#34;</span>
+</span></span><span style="display:flex;"><span>    tar --remove-files -czvf $bkp_file * &amp;&gt; $project_log/tar_$data.log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> grep -q <span style="color:#e6db74">&#34;File shrank by&#34;</span> $project_log/tar_$data.log; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;-&gt; Alert: The file was compressed Successfully, but there was an alert.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        echo $msg_sucess
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        echo $msg_error
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execution</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#1</span>
+</span></span><span style="display:flex;"><span>remove_last
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#2</span>
+</span></span><span style="display:flex;"><span>exec_bkp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd $bkp_dir
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#3</span>
+</span></span><span style="display:flex;"><span>exec_compact
+</span></span></code></pre></div><h4 id="key-features">Key Features:</h4>
+<ul>
+<li><strong>Efficient Backup</strong>: Utilizes <code>rsync</code> to ensure a fast and efficient backup process.</li>
+<li><strong>Compression</strong>: Reduces the size of your backups with <code>.tar.gz</code> compression.</li>
+<li><strong>Logging</strong>: Keeps a record of the backup process for future reference.</li>
+</ul>
+<h4 id="how-to-use-it">How to Use It:</h4>
+<ol>
+<li><strong>Setup</strong>: Ensure your <code>config.sh</code> file is correctly configured with the paths to your source and backup directories.</li>
+<li><strong>Execution</strong>: Make the script executable with <code>chmod +x do_backup.zsh</code> and run it with <code>./do_backup.zsh</code>.</li>
+</ol>
+<h3 id="the-upload-script-do_uploadzsh">The Upload Script: <code>do_upload.zsh</code></h3>
+<p>Following the backup process, we have the <code>do_upload.zsh</code> script, which takes care of uploading your compressed backup file to a remote storage location. Compatible with any remote storage supported by <code>rclone</code>, this script simplifies the process of moving your backups to the cloud.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/zsh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Script Name:    do_upload.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Author:         Pablo Andrade</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Created:        07/12/2023</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Version:        0.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Debugging ON / OFF</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#set -x</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Variables</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#script_path=&#34;$(dirname &#34;${BASH_SOURCE[0]}&#34;)&#34;</span>
+</span></span><span style="display:flex;"><span>project_directory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/home/pablodeas/Workspace/Projects/pessoal/do_backup&#34;</span>
+</span></span><span style="display:flex;"><span>source <span style="color:#e6db74">&#34;</span>$project_directory<span style="color:#e6db74">/config.sh&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload</span>
+</span></span><span style="display:flex;"><span>func exec_upload <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;-&gt; Starting Upload...&#34;</span>
+</span></span><span style="display:flex;"><span>  rclone copy $bkp_dir $remote:/Backups/ -vv &amp;&gt; $project_log/rclone_$data.log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		echo $msg_sucess
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>		echo $msg_error
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execution</span>
+</span></span><span style="display:flex;"><span>exec_upload
+</span></span></code></pre></div><h4 id="key-features-1">Key Features:</h4>
+<ul>
+<li><strong>Remote Upload</strong>: Leverages <code>rclone</code> to upload your backup file to a remote storage solution of your choice.</li>
+<li><strong>Logging</strong>: Provides logs for the upload process, ensuring transparency.</li>
+</ul>
+<h4 id="getting-started">Getting Started:</h4>
+<ol>
+<li><strong>Configuration</strong>: Update your <code>config.sh</code> file with the necessary remote storage details.</li>
+<li><strong>Preparation</strong>: Execute <code>chmod +x do_upload.zsh</code> to make the script executable.</li>
+<li><strong>Run</strong>: Simply execute <code>./do_upload.zsh</code> to initiate the upload process.</li>
+</ol>
+<h2 id="behind-the-scenes-configuration-and-dependencies">Behind the Scenes: Configuration and Dependencies</h2>
+<p>Both scripts rely on a shared configuration file, <code>config.sh</code>, which holds essential information such as source and backup directory paths, backup file names, and remote storage configurations. This centralized approach makes managing your backup and upload processes straightforward.</p>
+<p>Additionally, the scripts depend on several tools:</p>
+<ul>
+<li><strong>Zsh and Bash</strong>: The scripting languages used for writing the scripts.</li>
+<li><strong>rsync</strong>: Essential for the backup process.</li>
+<li><strong>tar</strong>: Used for compressing the backup files.</li>
+<li><strong>rclone</strong>: Facilitates the upload process to remote storage.</li>
+</ul>
+<p>Before diving into the scripts, ensure all dependencies are installed and correctly configured. This setup will empower you to automate your backup and upload tasks, saving time and reducing the risk of data loss.</p>
+<hr>
+<p><a href="https://github.com/pablodeas/backup_with_zsh">Source Code Here</a></p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>
