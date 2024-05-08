@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Backup on </title>
-    <link>localhost/tags/backup/</link>
+    <link>https://pabu-dev-blog.netlify.app/tags/backup/</link>
     <description>Recent content in Backup on </description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 07 May 2024 16:55:49 -0300</lastBuildDate>
-    <atom:link href="localhost/tags/backup/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pabu-dev-blog.netlify.app/tags/backup/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Backup and Upload With Zsh</title>
-      <link>localhost/posts/how-to-backup-with-zsh/</link>
+      <link>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</link>
       <pubDate>Tue, 07 May 2024 16:55:49 -0300</pubDate>
-      <guid>localhost/posts/how-to-backup-with-zsh/</guid>
+      <guid>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</guid>
       <description>In today&amp;rsquo;s digital age, data backup and synchronization have become crucial aspects of maintaining our digital lives. Whether it&amp;rsquo;s personal projects, work documents, or family photos, ensuring that our data is safe and easily accessible is paramount. In this blog post, I&amp;rsquo;ll introduce you to a set of custom scripts designed to automate the backup and upload process of a specified directory. These scripts, written in Zsh and Bash, leverage powerful tools like rsync, tar, and rclone to streamline your backup and upload tasks.</description>
     </item>
   </channel>

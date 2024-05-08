@@ -2,29 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>localhost/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/tags/backup/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/tags/backup/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/posts/how-to-backup-with-zsh/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/posts/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/posts/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/tags/shell/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/tags/shell/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/tags/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/tags/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/tags/zsh/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/tags/zsh/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>localhost/blog/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/blog/</loc>
   </url><url>
-    <loc>localhost/series/</loc>
+    <loc>https://pabu-dev-blog.netlify.app/series/</loc>
   </url>
 </urlset>
