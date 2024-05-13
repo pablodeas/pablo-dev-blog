@@ -1,5 +1,5 @@
 ---
-title: "How to Backup and Upload With Zsh"
+title: "Backup e Upload com Zsh"
 date: 2024-05-07T16:55:49-03:00
 draft: false
 toc: false
@@ -10,15 +10,18 @@ tags:
   - Shell
 ---
 
-In today's digital age, data backup and synchronization have become crucial aspects of maintaining our digital lives. Whether it's personal projects, work documents, or family photos, ensuring that our data is safe and easily accessible is paramount. In this blog post, I'll introduce you to a set of custom scripts designed to automate the backup and upload process of a specified directory. These scripts, written in Zsh and Bash, leverage powerful tools like `rsync`, `tar`, and `rclone` to streamline your backup and upload tasks.
+Na era digital de hoje, o backup e a sincronização de dados tornaram-se aspectos cruciais para a manutenção de nossas vidas digitais. Quer se trate de projetos pessoais, documentos de trabalho ou fotos de família, é fundamental garantir que nossos dados estejam seguros e facilmente acessíveis.
 
-## A Closer Look at the Scripts
+No tutorial de hoje, apresentarei um conjunto de scripts personalizados projetados para automatizar o processo de backup e upload de um diretório específico. Esses scripts, escritos em Zsh e Bash, utilizam ferramentas poderosas como `rsync`, `tar` e `rclone` para agilizar suas tarefas de backup e upload.
 
-### The Backup Script: `do_backup.zsh`
+## Olhando de perto
 
-Our journey begins with the `do_backup.zsh` script, a reliable companion for creating backups of your specified directories. It employs `rsync` to mirror files from the source directory to a designated backup location, followed by a compression into a neat `.tar.gz` file. This script is not just about copying files; it's about safeguarding your data with minimal effort.
+### Script de Backup: `do_backup.zsh`
 
-```sh
+Nossa jornada começa com o script `do_backup.zsh`, um companheiro confiável para criar backups de seus diretórios especificados. 
+Ele emprega `rsync` para espelhar arquivos do diretório de origem para um local de backup designado, seguido por uma compactação em um arquivo `.tar.gz` organizado. Este script não trata apenas de copiar arquivos; trata-se de proteger seus dados com o mínimo de esforço.
+
+```shell
 #!/usr/bin/env zsh
 
 # Script Name:  backup.zsh
@@ -95,22 +98,23 @@ cd $bkp_dir
 exec_compact
 ```
 
-#### Key Features:
+#### Características principais:
 
-- **Efficient Backup**: Utilizes `rsync` to ensure a fast and efficient backup process.
-- **Compression**: Reduces the size of your backups with `.tar.gz` compression.
-- **Logging**: Keeps a record of the backup process for future reference.
+- **Backup Eficiente**: Utiliza `rsync` para garantir um processo de backup rápido e eficiente.
+- **Compressão**: Reduz o tamanho dos seus backups com a compressão `.tar.gz`.
+- **Registro**: mantém um registro do processo de backup para referência futura.
 
-#### How to Use It:
+#### Como usá-lo:
 
-1. **Setup**: Ensure your `config.sh` file is correctly configured with the paths to your source and backup directories.
-2. **Execution**: Make the script executable with `chmod +x do_backup.zsh` and run it with `./do_backup.zsh`.
+1. **Configuração**: Certifique-se de que seu arquivo `config.sh` esteja configurado corretamente com os caminhos para seus diretórios de origem e de backup.
+2. **Execução**: Torne o script executável com `chmod +x do_backup.zsh` e execute-o com `./do_backup.zsh`.
 
-### The Upload Script: `do_upload.zsh`
+### Script de Upload: `do_upload.zsh`
 
-Following the backup process, we have the `do_upload.zsh` script, which takes care of uploading your compressed backup file to a remote storage location. Compatible with any remote storage supported by `rclone`, this script simplifies the process of moving your backups to the cloud.
+Seguindo o processo de backup, temos o script `do_upload.zsh`, que se encarrega de enviar seu arquivo de backup compactado para um local de armazenamento remoto.
+Compatível com qualquer armazenamento remoto suportado por `rclone`, este script simplifica o processo de movimentação de seus backups para a nuvem.
 
-```sh
+```shell
 #!/bin/zsh
 
 # Script Name:    do_upload.sh
@@ -142,29 +146,40 @@ func exec_upload () {
 exec_upload
 ```
 
-#### Key Features:
+#### Características principais:
 
-- **Remote Upload**: Leverages `rclone` to upload your backup file to a remote storage solution of your choice.
-- **Logging**: Provides logs for the upload process, ensuring transparency.
+- **Upload remoto**: aproveita o `rclone` para enviar seu arquivo de backup para uma solução de armazenamento remoto de sua escolha.
+- **Logging**: Fornece logs do processo de upload, garantindo transparência.
 
-#### Getting Started:
+#### Começando:
 
-1. **Configuration**: Update your `config.sh` file with the necessary remote storage details.
-2. **Preparation**: Execute `chmod +x do_upload.zsh` to make the script executable.
-3. **Run**: Simply execute `./do_upload.zsh` to initiate the upload process.
+1. **Configuração**: Atualize seu arquivo `config.sh` com os detalhes de armazenamento remoto necessários.
+2. **Preparação**: Execute `chmod +x do_upload.zsh` para tornar o script executável.
+3. **Executar**: Basta executar `./do_upload.zsh` para iniciar o processo de upload.
 
-## Behind the Scenes: Configuration and Dependencies
+## Nos Bastidores: Configuração e Dependências
 
-Both scripts rely on a shared configuration file, `config.sh`, which holds essential information such as source and backup directory paths, backup file names, and remote storage configurations. This centralized approach makes managing your backup and upload processes straightforward.
+Ambos os scripts dependem de um arquivo de configuração compartilhado, `config.sh`, que contém informações essenciais, como caminhos de diretório de origem e de backup, nomes de arquivos de backup e configurações de armazenamento remoto. Essa abordagem centralizada simplifica o gerenciamento de seus processos de backup e upload.
 
-Additionally, the scripts depend on several tools:
+Além disso, os scripts dependem de diversas ferramentas:
 
-- **Zsh and Bash**: The scripting languages used for writing the scripts.
-- **rsync**: Essential for the backup process.
-- **tar**: Used for compressing the backup files.
-- **rclone**: Facilitates the upload process to remote storage.
+- **Zsh e Bash**: as linguagens de script usadas para escrever os scripts.
+- **rsync**: Essencial para o processo de backup.
+- **tar**: Usado para compactar os arquivos de backup.
+- **rclone**: Facilita o processo de upload para armazenamento remoto.
 
-Before diving into the scripts, ensure all dependencies are installed and correctly configured. This setup will empower you to automate your backup and upload tasks, saving time and reducing the risk of data loss.
+Antes de mergulhar nos scripts, certifique-se de que todas as dependências estejam instaladas e configuradas corretamente. Esta configuração permitirá que você automatize suas tarefas de backup e upload, economizando tempo e reduzindo o risco de perda de dados.
+
+[Código Fonte](https://github.com/pablodeas/backup_with_zsh)
 
 ---
-[Source Code Here](https://github.com/pablodeas/backup_with_zsh)
+
+*Obrigado por lerem até aqui.*
+
+Para entrar em contato comigo, utilize qualquer um dos links abaixo:
+
+[Instagram](https://instagram.com/in/pablodeas)
+.
+[Whatsapp](https://api.whatsapp.com/send?phone=5521966916139)
+.
+[E-mail](mailto:pablodeas@gmail.com)

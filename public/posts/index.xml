@@ -6,21 +6,161 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Tue, 07 May 2024 16:55:49 -0300</lastBuildDate>
+        <lastBuildDate>Sun, 12 May 2024 19:08:44 -0300</lastBuildDate>
         <atom:link href="https://pabu-dev-blog.netlify.app/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>How to Backup and Upload With Zsh</title>
+            <title>SQL Server com Docker Compose</title>
+            <link>https://pabu-dev-blog.netlify.app/posts/how-to-sql-server-docker/</link>
+            <pubDate>Sun, 12 May 2024 19:08:44 -0300</pubDate>
+            
+            <guid>https://pabu-dev-blog.netlify.app/posts/how-to-sql-server-docker/</guid>
+            <description>Olá a Todos. Como vocês estão?
+Espero que bem.
+Hoje, temos mais um tutorial e será sobre algo que utilizei e ainda utilizo bastante quando preciso testar novas funcionalidades ou conteúdo relacionado a bancos de dados.
+Será algo mais enxuto, caso queiram um tutorial mais detalhado e completo, podem me mandar uma DM no link que deixarei no final do post.
+Vamos lá!
+1. Docker e Docker Compose Como no título do post mostra, utilizaremos o docker-compose para a criação do nosso ambiente.</description>
+            <content type="html"><![CDATA[<p>Olá a Todos. Como vocês estão?</p>
+<p>Espero que bem.</p>
+<p>Hoje, temos mais um tutorial e será sobre algo que utilizei e ainda utilizo bastante quando preciso testar novas funcionalidades ou conteúdo relacionado a bancos de dados.</p>
+<p>Será algo mais enxuto, caso queiram um tutorial mais detalhado e completo, podem me mandar uma DM no link que deixarei no final do post.</p>
+<p>Vamos lá!</p>
+<hr>
+<h3 id="1-docker-e-docker-compose">1. Docker e Docker Compose</h3>
+<p>Como no título do post mostra, utilizaremos o <em>docker-compose</em> para a criação do nosso ambiente.</p>
+<p>Então, caso não tenha na sua máquina, acesse o seguinte link para instalar:
+<a href="https://docs.docker.com/compose/install/">Instalando Docker Compose</a></p>
+<p>Após, verifique se está funcionando corretamente.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Execute</span>
+</span></span><span style="display:flex;"><span>docker compose --version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Resultado</span>
+</span></span><span style="display:flex;"><span>Docker version 24.0.5, build 24.0.5-0ubuntu1~22.04.1
+</span></span></code></pre></div><p>Com o Docker instalado e em pleno funcionamento, vamos começar a escrever nosso <em>docker-compose.yml</em>.</p>
+<h3 id="2-criando-e-configurando-composeyml">2. Criando e configurando compose.yml</h3>
+<p>O Docker utiliza o arquivo compose.yml como um arquivo de configuração, uma ferramenta que facilita a criação e execução dos contêineres.</p>
+<p>Crie o arquivo utilizando o editor de texto ou terminal de sua preferência.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Comando para criar um arquivo vazio</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;&#34;</span> &gt; docker-compose.yml
+</span></span></code></pre></div><p>Com o arquivo criado, vamos as configurações.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sql-server-db</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">sql-server-db</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mcr.microsoft.com/mssql/server:2019-latest</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#e6db74">&#34;1433:1433&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">SA_PASSWORD</span>: <span style="color:#ae81ff">${PASSWORD}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ACCEPT_EULA</span>: <span style="color:#e6db74">&#34;Y&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">sql-data:/var/opt/mssql</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sqldata</span>:
+</span></span></code></pre></div><p>Vamos entender o que acabamos de criar.</p>
+<blockquote>
+<p>version: &ldquo;3&rdquo;</p>
+</blockquote>
+<p>Especifica a versão do formato do arquivo Docker Compose.</p>
+<blockquote>
+<p>services:</p>
+</blockquote>
+<p>Define os serviços que serão criados ao executar o arquivo. Cada serviço representa um contêiner Docker.</p>
+<blockquote>
+<p>sql-server-db:</p>
+</blockquote>
+<p>O nome do primeiro serviço. Nome utilizado para referenciar o serviço e como um alias ao executar comandos Docker Compose.</p>
+<blockquote>
+<p>container_name: sql-server-db</p>
+</blockquote>
+<p>Define o nome do contêiner para esse serviço.</p>
+<blockquote>
+<p>image:</p>
+</blockquote>
+<p>Especifica a imagem Docker utilizada pelo contêiner. Nesse caso é utilizado a imagem oficial do SQL Server 2019 da Microsoft.</p>
+<blockquote>
+<p>ports:</p>
+</blockquote>
+<p>Utilizado para mapear as portas do host e do contêiner. <em>&ldquo;1433:1433&rdquo;</em> significa que a porta <em>1433</em> do contêiner será mapeada para a porta <em>1433</em> do host. Lembrando apenas que <em>host</em> significa a sua máquina. Permite o acesso direto ao banco de dados.</p>
+<blockquote>
+<p>environment:</p>
+</blockquote>
+<p>Define as variáveis de ambiente que são passadas para o contêiner.</p>
+<blockquote>
+<p>SA_PASSWORD:</p>
+</blockquote>
+<p>Variável que define a senha do usuário <em>&ldquo;sa&rdquo;</em> que é o usuário de maior prioridade no SQL Server. O valor dessa variável está definido em outro arquivo, mais a frente explico.</p>
+<blockquote>
+<p>ACCEPT_EULA:</p>
+</blockquote>
+<p>Aceita os Termos de Licença do Endereço do Usuário (EULA) do SQL Server. Isso é necessário para que o SQL Server seja iniciado corretamente.</p>
+<blockquote>
+<p>volumes:</p>
+</blockquote>
+<p>Define volumes Docker que são montados no contêiner. Aqui, um volume chamado sql-data é montado no caminho /var/opt/mssql dentro do contêiner. Isso é útil para persistir os dados do banco de dados entre reinicializações do contêiner.</p>
+<blockquote>
+<p>volumes:</p>
+</blockquote>
+<p>Na identação do arquivo, esse comando está em um nível superior. Nesse caso, define volumes globais que podem ser utilizados pelos serviços, persistindo seus dados.</p>
+<h3 id="3-criando-a-variável-de-ambiente">3. Criando a variável de ambiente</h3>
+<p>Como informei na explicação do <em>&ldquo;SA_PASSWORD&rdquo;</em>, o mesmo está utilizando uma senha que foi definida em um arquivo externo. Esse padrão é utilizado para manter a segurança das variáveis e senhas utilizados no seu ambiente.</p>
+<p>Para definir o valor dessa variável, crie o arquivo <em>&quot;.env&quot;</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Cria um arquivo de texto vazio</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;&#34;</span> &gt; .env
+</span></span></code></pre></div><p>Após, abra com o seu editor de texto de preferência e digite:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>PASSWORD<span style="color:#f92672">=</span>DigiteSuaSenhaDePreferenciaAquiTaBom?
+</span></span></code></pre></div><h3 id="4-iniciando-nosso-ambiente">4. Iniciando nosso ambiente.</h3>
+<p>Com tudo criado e configurado, vamos a execução.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Cria e inicia o contêiner</span>
+</span></span><span style="display:flex;"><span>docker-compose build <span style="color:#f92672">&amp;&amp;</span> docker-compose up -d
+</span></span></code></pre></div><p>O parâmetro <em>&ldquo;build&rdquo;</em> irá puxar as imagens da internet e irá construir o serviço e o parâmetro <em>&ldquo;up -d&rdquo;</em> irá subir/iniciar os serviços em segundo plano, para não travar o terminal.</p>
+<p>Teremos algo como:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Comando</span>
+</span></span><span style="display:flex;"><span>docker-compose build <span style="color:#f92672">&amp;&amp;</span> docker-compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Resultado</span>
+</span></span><span style="display:flex;"><span>sql-server-db uses an image, skipping
+</span></span><span style="display:flex;"><span>Pulling sql-server-db <span style="color:#f92672">(</span>mcr.microsoft.com/mssql/server:2019-latest<span style="color:#f92672">)</span>...
+</span></span><span style="display:flex;"><span>2019-latest: Pulling from mssql/server
+</span></span><span style="display:flex;"><span>bbca08248480: Pull complete
+</span></span><span style="display:flex;"><span>99ed8d3c45a0: Pull complete
+</span></span><span style="display:flex;"><span>cac19e7e89db: Pull complete
+</span></span><span style="display:flex;"><span>Digest: sha256:22ac1bcc7aa4582c93050a1231fa4817df2c62fa7e6d68096b2b9e1737be25ac
+</span></span><span style="display:flex;"><span>Status: Downloaded newer image <span style="color:#66d9ef">for</span> mcr.microsoft.com/mssql/server:2019-latest
+</span></span><span style="display:flex;"><span>Creating sql-server-db ... <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Para acessar é só utilizar o seu gerenciador de banco de dados de preferência, passar o usuário <em>&ldquo;sa&rdquo;</em> que é o padrão de administração e a senha que foi passada na variável <em>&ldquo;PASSWORD&rdquo;</em>.</p>
+<p>Exemplo utilizando o software <em>DBeaver</em>:
+<img alt="dbeaver-conf" src="/images/dbeaver-conf.png"></p>
+<hr>
+<p>Com isso, finalizamos o rápido tutorial de hoje.</p>
+<p><em>Obrigado por lerem até aqui.</em></p>
+<p>Para entrar em contato comigo, utilize qualquer um dos links abaixo:</p>
+<p><a href="https://instagram.com/in/pablodeas">Instagram</a>
+.
+<a href="https://api.whatsapp.com/send?phone=5521966916139">Whatsapp</a>
+.
+<a href="mailto:pablodeas@gmail.com">E-mail</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Backup e Upload com Zsh</title>
             <link>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</link>
             <pubDate>Tue, 07 May 2024 16:55:49 -0300</pubDate>
             
             <guid>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</guid>
-            <description>In today&amp;rsquo;s digital age, data backup and synchronization have become crucial aspects of maintaining our digital lives. Whether it&amp;rsquo;s personal projects, work documents, or family photos, ensuring that our data is safe and easily accessible is paramount. In this blog post, I&amp;rsquo;ll introduce you to a set of custom scripts designed to automate the backup and upload process of a specified directory. These scripts, written in Zsh and Bash, leverage powerful tools like rsync, tar, and rclone to streamline your backup and upload tasks.</description>
-            <content type="html"><![CDATA[<p>In today&rsquo;s digital age, data backup and synchronization have become crucial aspects of maintaining our digital lives. Whether it&rsquo;s personal projects, work documents, or family photos, ensuring that our data is safe and easily accessible is paramount. In this blog post, I&rsquo;ll introduce you to a set of custom scripts designed to automate the backup and upload process of a specified directory. These scripts, written in Zsh and Bash, leverage powerful tools like <code>rsync</code>, <code>tar</code>, and <code>rclone</code> to streamline your backup and upload tasks.</p>
-<h2 id="a-closer-look-at-the-scripts">A Closer Look at the Scripts</h2>
-<h3 id="the-backup-script-do_backupzsh">The Backup Script: <code>do_backup.zsh</code></h3>
-<p>Our journey begins with the <code>do_backup.zsh</code> script, a reliable companion for creating backups of your specified directories. It employs <code>rsync</code> to mirror files from the source directory to a designated backup location, followed by a compression into a neat <code>.tar.gz</code> file. This script is not just about copying files; it&rsquo;s about safeguarding your data with minimal effort.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env zsh
+            <description>Na era digital de hoje, o backup e a sincronização de dados tornaram-se aspectos cruciais para a manutenção de nossas vidas digitais. Quer se trate de projetos pessoais, documentos de trabalho ou fotos de família, é fundamental garantir que nossos dados estejam seguros e facilmente acessíveis.
+No tutorial de hoje, apresentarei um conjunto de scripts personalizados projetados para automatizar o processo de backup e upload de um diretório específico. Esses scripts, escritos em Zsh e Bash, utilizam ferramentas poderosas como rsync, tar e rclone para agilizar suas tarefas de backup e upload.</description>
+            <content type="html"><![CDATA[<p>Na era digital de hoje, o backup e a sincronização de dados tornaram-se aspectos cruciais para a manutenção de nossas vidas digitais. Quer se trate de projetos pessoais, documentos de trabalho ou fotos de família, é fundamental garantir que nossos dados estejam seguros e facilmente acessíveis.</p>
+<p>No tutorial de hoje, apresentarei um conjunto de scripts personalizados projetados para automatizar o processo de backup e upload de um diretório específico. Esses scripts, escritos em Zsh e Bash, utilizam ferramentas poderosas como <code>rsync</code>, <code>tar</code> e <code>rclone</code> para agilizar suas tarefas de backup e upload.</p>
+<h2 id="olhando-de-perto">Olhando de perto</h2>
+<h3 id="script-de-backup-do_backupzsh">Script de Backup: <code>do_backup.zsh</code></h3>
+<p>Nossa jornada começa com o script <code>do_backup.zsh</code>, um companheiro confiável para criar backups de seus diretórios especificados.
+Ele emprega <code>rsync</code> para espelhar arquivos do diretório de origem para um local de backup designado, seguido por uma compactação em um arquivo <code>.tar.gz</code> organizado. Este script não trata apenas de copiar arquivos; trata-se de proteger seus dados com o mínimo de esforço.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env zsh
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Script Name:  backup.zsh</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Author:       Pablo Andrade</span>
@@ -94,20 +234,21 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#3</span>
 </span></span><span style="display:flex;"><span>exec_compact
-</span></span></code></pre></div><h4 id="key-features">Key Features:</h4>
+</span></span></code></pre></div><h4 id="características-principais">Características principais:</h4>
 <ul>
-<li><strong>Efficient Backup</strong>: Utilizes <code>rsync</code> to ensure a fast and efficient backup process.</li>
-<li><strong>Compression</strong>: Reduces the size of your backups with <code>.tar.gz</code> compression.</li>
-<li><strong>Logging</strong>: Keeps a record of the backup process for future reference.</li>
+<li><strong>Backup Eficiente</strong>: Utiliza <code>rsync</code> para garantir um processo de backup rápido e eficiente.</li>
+<li><strong>Compressão</strong>: Reduz o tamanho dos seus backups com a compressão <code>.tar.gz</code>.</li>
+<li><strong>Registro</strong>: mantém um registro do processo de backup para referência futura.</li>
 </ul>
-<h4 id="how-to-use-it">How to Use It:</h4>
+<h4 id="como-usá-lo">Como usá-lo:</h4>
 <ol>
-<li><strong>Setup</strong>: Ensure your <code>config.sh</code> file is correctly configured with the paths to your source and backup directories.</li>
-<li><strong>Execution</strong>: Make the script executable with <code>chmod +x do_backup.zsh</code> and run it with <code>./do_backup.zsh</code>.</li>
+<li><strong>Configuração</strong>: Certifique-se de que seu arquivo <code>config.sh</code> esteja configurado corretamente com os caminhos para seus diretórios de origem e de backup.</li>
+<li><strong>Execução</strong>: Torne o script executável com <code>chmod +x do_backup.zsh</code> e execute-o com <code>./do_backup.zsh</code>.</li>
 </ol>
-<h3 id="the-upload-script-do_uploadzsh">The Upload Script: <code>do_upload.zsh</code></h3>
-<p>Following the backup process, we have the <code>do_upload.zsh</code> script, which takes care of uploading your compressed backup file to a remote storage location. Compatible with any remote storage supported by <code>rclone</code>, this script simplifies the process of moving your backups to the cloud.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/zsh
+<h3 id="script-de-upload-do_uploadzsh">Script de Upload: <code>do_upload.zsh</code></h3>
+<p>Seguindo o processo de backup, temos o script <code>do_upload.zsh</code>, que se encarrega de enviar seu arquivo de backup compactado para um local de armazenamento remoto.
+Compatível com qualquer armazenamento remoto suportado por <code>rclone</code>, este script simplifica o processo de movimentação de seus backups para a nuvem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/zsh
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Script Name:    do_upload.sh</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Author:         Pablo Andrade</span>
@@ -136,29 +277,36 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Execution</span>
 </span></span><span style="display:flex;"><span>exec_upload
-</span></span></code></pre></div><h4 id="key-features-1">Key Features:</h4>
+</span></span></code></pre></div><h4 id="características-principais-1">Características principais:</h4>
 <ul>
-<li><strong>Remote Upload</strong>: Leverages <code>rclone</code> to upload your backup file to a remote storage solution of your choice.</li>
-<li><strong>Logging</strong>: Provides logs for the upload process, ensuring transparency.</li>
+<li><strong>Upload remoto</strong>: aproveita o <code>rclone</code> para enviar seu arquivo de backup para uma solução de armazenamento remoto de sua escolha.</li>
+<li><strong>Logging</strong>: Fornece logs do processo de upload, garantindo transparência.</li>
 </ul>
-<h4 id="getting-started">Getting Started:</h4>
+<h4 id="começando">Começando:</h4>
 <ol>
-<li><strong>Configuration</strong>: Update your <code>config.sh</code> file with the necessary remote storage details.</li>
-<li><strong>Preparation</strong>: Execute <code>chmod +x do_upload.zsh</code> to make the script executable.</li>
-<li><strong>Run</strong>: Simply execute <code>./do_upload.zsh</code> to initiate the upload process.</li>
+<li><strong>Configuração</strong>: Atualize seu arquivo <code>config.sh</code> com os detalhes de armazenamento remoto necessários.</li>
+<li><strong>Preparação</strong>: Execute <code>chmod +x do_upload.zsh</code> para tornar o script executável.</li>
+<li><strong>Executar</strong>: Basta executar <code>./do_upload.zsh</code> para iniciar o processo de upload.</li>
 </ol>
-<h2 id="behind-the-scenes-configuration-and-dependencies">Behind the Scenes: Configuration and Dependencies</h2>
-<p>Both scripts rely on a shared configuration file, <code>config.sh</code>, which holds essential information such as source and backup directory paths, backup file names, and remote storage configurations. This centralized approach makes managing your backup and upload processes straightforward.</p>
-<p>Additionally, the scripts depend on several tools:</p>
+<h2 id="nos-bastidores-configuração-e-dependências">Nos Bastidores: Configuração e Dependências</h2>
+<p>Ambos os scripts dependem de um arquivo de configuração compartilhado, <code>config.sh</code>, que contém informações essenciais, como caminhos de diretório de origem e de backup, nomes de arquivos de backup e configurações de armazenamento remoto. Essa abordagem centralizada simplifica o gerenciamento de seus processos de backup e upload.</p>
+<p>Além disso, os scripts dependem de diversas ferramentas:</p>
 <ul>
-<li><strong>Zsh and Bash</strong>: The scripting languages used for writing the scripts.</li>
-<li><strong>rsync</strong>: Essential for the backup process.</li>
-<li><strong>tar</strong>: Used for compressing the backup files.</li>
-<li><strong>rclone</strong>: Facilitates the upload process to remote storage.</li>
+<li><strong>Zsh e Bash</strong>: as linguagens de script usadas para escrever os scripts.</li>
+<li><strong>rsync</strong>: Essencial para o processo de backup.</li>
+<li><strong>tar</strong>: Usado para compactar os arquivos de backup.</li>
+<li><strong>rclone</strong>: Facilita o processo de upload para armazenamento remoto.</li>
 </ul>
-<p>Before diving into the scripts, ensure all dependencies are installed and correctly configured. This setup will empower you to automate your backup and upload tasks, saving time and reducing the risk of data loss.</p>
+<p>Antes de mergulhar nos scripts, certifique-se de que todas as dependências estejam instaladas e configuradas corretamente. Esta configuração permitirá que você automatize suas tarefas de backup e upload, economizando tempo e reduzindo o risco de perda de dados.</p>
+<p><a href="https://github.com/pablodeas/backup_with_zsh">Código Fonte</a></p>
 <hr>
-<p><a href="https://github.com/pablodeas/backup_with_zsh">Source Code Here</a></p>
+<p><em>Obrigado por lerem até aqui.</em></p>
+<p>Para entrar em contato comigo, utilize qualquer um dos links abaixo:</p>
+<p><a href="https://instagram.com/in/pablodeas">Instagram</a>
+.
+<a href="https://api.whatsapp.com/send?phone=5521966916139">Whatsapp</a>
+.
+<a href="mailto:pablodeas@gmail.com">E-mail</a></p>
 ]]></content>
         </item>
         

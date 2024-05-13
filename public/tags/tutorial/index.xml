@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shell on </title>
-    <link>https://pabu-dev-blog.netlify.app/tags/shell/</link>
-    <description>Recent content in Shell on </description>
+    <title>Tutorial on </title>
+    <link>https://pabu-dev-blog.netlify.app/tags/tutorial/</link>
+    <description>Recent content in Tutorial on </description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Sun, 12 May 2024 19:08:44 -0300</lastBuildDate>
-    <atom:link href="https://pabu-dev-blog.netlify.app/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pabu-dev-blog.netlify.app/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SQL Server com Docker Compose</title>
       <link>https://pabu-dev-blog.netlify.app/posts/how-to-sql-server-docker/</link>
       <pubDate>Sun, 12 May 2024 19:08:44 -0300</pubDate>
       <guid>https://pabu-dev-blog.netlify.app/posts/how-to-sql-server-docker/</guid>
       <description>Olá a Todos. Como vocês estão?&#xA;Espero que bem.&#xA;Hoje, temos mais um tutorial e será sobre algo que utilizei e ainda utilizo bastante quando preciso testar novas funcionalidades ou conteúdo relacionado a bancos de dados.&#xA;Será algo mais enxuto, caso queiram um tutorial mais detalhado e completo, podem me mandar uma DM no link que deixarei no final do post.&#xA;Vamos lá!&#xA;1. Docker e Docker Compose Como no título do post mostra, utilizaremos o docker-compose para a criação do nosso ambiente.</description>
-    </item>
-    <item>
-      <title>Backup e Upload com Zsh</title>
-      <link>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</link>
-      <pubDate>Tue, 07 May 2024 16:55:49 -0300</pubDate>
-      <guid>https://pabu-dev-blog.netlify.app/posts/how-to-backup-with-zsh/</guid>
-      <description>Na era digital de hoje, o backup e a sincronização de dados tornaram-se aspectos cruciais para a manutenção de nossas vidas digitais. Quer se trate de projetos pessoais, documentos de trabalho ou fotos de família, é fundamental garantir que nossos dados estejam seguros e facilmente acessíveis.&#xA;No tutorial de hoje, apresentarei um conjunto de scripts personalizados projetados para automatizar o processo de backup e upload de um diretório específico. Esses scripts, escritos em Zsh e Bash, utilizam ferramentas poderosas como rsync, tar e rclone para agilizar suas tarefas de backup e upload.</description>
     </item>
   </channel>
 </rss>

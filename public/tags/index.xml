@@ -7,13 +7,20 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 07 May 2024 16:55:49 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 12 May 2024 19:08:44 -0300</lastBuildDate>
     <atom:link href="https://pabu-dev-blog.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Backup</title>
-      <link>https://pabu-dev-blog.netlify.app/tags/backup/</link>
+      <title>Docker</title>
+      <link>https://pabu-dev-blog.netlify.app/tags/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pabu-dev-blog.netlify.app/tags/backup/</guid>
+      <guid>https://pabu-dev-blog.netlify.app/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker-Compose</title>
+      <link>https://pabu-dev-blog.netlify.app/tags/docker-compose/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pabu-dev-blog.netlify.app/tags/docker-compose/</guid>
       <description></description>
     </item>
     <item>
@@ -21,6 +28,34 @@
       <link>https://pabu-dev-blog.netlify.app/tags/shell/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pabu-dev-blog.netlify.app/tags/shell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sql</title>
+      <link>https://pabu-dev-blog.netlify.app/tags/sql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pabu-dev-blog.netlify.app/tags/sql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sqlserver</title>
+      <link>https://pabu-dev-blog.netlify.app/tags/sqlserver/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pabu-dev-blog.netlify.app/tags/sqlserver/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://pabu-dev-blog.netlify.app/tags/tutorial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pabu-dev-blog.netlify.app/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Backup</title>
+      <link>https://pabu-dev-blog.netlify.app/tags/backup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pabu-dev-blog.netlify.app/tags/backup/</guid>
       <description></description>
     </item>
     <item>
