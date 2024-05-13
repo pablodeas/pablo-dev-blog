@@ -182,6 +182,8 @@ Com isso, finalizamos o rápido tutorial de hoje.
 
 Para entrar em contato comigo, utilize qualquer um dos links abaixo:
 
+[Linkedin](https://linkedin.com.br/in/pablodeas)
+.
 [Instagram](https://instagram.com/in/pablodeas)
 .
 [Whatsapp](https://api.whatsapp.com/send?phone=5521966916139)
