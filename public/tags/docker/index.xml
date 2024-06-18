@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on </title>
-    <link>http://localhost:1313/tags/docker/</link>
+    <link>https://pabo-dev.netlify.app/tags/docker/</link>
     <description>Recent content in Docker on </description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Sun, 12 May 2024 19:08:44 -0300</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pabo-dev.netlify.app/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SQL Server com Docker Compose</title>
-      <link>http://localhost:1313/posts/how-to-sql-server-docker/</link>
+      <link>https://pabo-dev.netlify.app/posts/how-to-sql-server-docker/</link>
       <pubDate>Sun, 12 May 2024 19:08:44 -0300</pubDate>
-      <guid>http://localhost:1313/posts/how-to-sql-server-docker/</guid>
+      <guid>https://pabo-dev.netlify.app/posts/how-to-sql-server-docker/</guid>
       <description>Olá a Todos. Como vocês estão?&#xA;Espero que bem.&#xA;Hoje, temos mais um tutorial e será sobre algo que utilizei e ainda utilizo bastante quando preciso testar novas funcionalidades ou conteúdo relacionado a bancos de dados.&#xA;Será algo mais enxuto, caso queiram um tutorial mais detalhado e completo, podem me mandar uma DM no link que deixarei no final do post.&#xA;Vamos lá!&#xA;1. Docker e Docker Compose Como no título do post mostra, utilizaremos o docker-compose para a criação do nosso ambiente.</description>
     </item>
   </channel>

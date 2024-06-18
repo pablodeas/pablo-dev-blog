@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://pabo-dev.netlify.app/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/docker/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/docker/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/docker-compose/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/docker-compose/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://pabo-dev.netlify.app/posts/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/shell/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/shell/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sql/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/sql/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/how-to-sql-server-docker/</loc>
+    <loc>https://pabo-dev.netlify.app/posts/how-to-sql-server-docker/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sqlserver/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/sqlserver/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tutorial/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/tutorial/</loc>
     <lastmod>2024-05-12T19:08:44-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/backup/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/backup/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/how-to-backup-with-zsh/</loc>
+    <loc>https://pabo-dev.netlify.app/posts/how-to-backup-with-zsh/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/zsh/</loc>
+    <loc>https://pabo-dev.netlify.app/tags/zsh/</loc>
     <lastmod>2024-05-07T16:55:49-03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://pabo-dev.netlify.app/blog/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://pabo-dev.netlify.app/series/</loc>
   </url>
 </urlset>
