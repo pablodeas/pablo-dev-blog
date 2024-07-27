@@ -1,5 +1,5 @@
 baseurl      = "https://pabo-dev.netlify.app/"
-title        = "Pablo Dev"
+title        = "Pablo Dev Blog"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 paginate     = 10
@@ -46,7 +46,7 @@ paginate     = 10
     [params.portrait]
         path = "/images/profile.jpeg"
         alt = "Portrait"
-        maxWidth = "200px"
+        maxWidth = "180px"
     
     
 
@@ -58,7 +58,7 @@ paginate     = 10
 
 [languages]
   [languages.en]
-    title = ""
+    title = "Pablo Dev Blog"
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
   [languages.en.params]
@@ -68,7 +68,7 @@ paginate     = 10
     keywords = ""
 
     [languages.en.params.logo]
-      logoText = "Pablo Dev's Blog"
+      logoText = "Main Page"
       logoHomeLink = "/"
     # or
     #
